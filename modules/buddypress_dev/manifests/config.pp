@@ -5,5 +5,4 @@ class buddypress_dev::config {
 		target  => '/vagrant/buddypress-develop/src/',
 		require => Class['buddypress_dev::repository'],
 	}
-
 }
