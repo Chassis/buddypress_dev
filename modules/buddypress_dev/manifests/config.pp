@@ -1,17 +1,9 @@
-# Adjust the default Chassis wp-config.php
+# Add a symlink so we can use the plugin
 class buddypress_dev::config {
-	# Configure Chassis' wp-config.php per the WP Core Development guide:
-	# http://docs.chassis.io/en/latest/guides/#wordpress-core-development
-	file_line { 'adjust chassis wp-config.php':
-		path     => '/vagrant/wp-config.php',
-		multiple => true,
-		line     => "if ( ! defined( 'WP_CLI' ) ) { \n\trequire_once( ABSPATH . 'wp-settings.php' );\n}",
-		match    => 'require_once.*ABSPATH.*wp-settings.php',
-	}
-
-	# Add the proxy wp-config.php file to the `src/` folder.
-	file { '/vagrant/buddypress-develop/src/wp-config.php':
-		content => template('buddypress_dev/wp-config.php.erb'),
+	file { '/vagrant/buddypress-develop/src/':
+		ensure  => 'link',
+		target  => '/vagrant/content/plugins/buddypress',
 		require => Class['buddypress_dev::repository'],
 	}
+
 }
