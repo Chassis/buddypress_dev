@@ -1,0 +1,9 @@
+<?php
+
+// Fool WP-CLI into recognising this as a valid config file, then
+// handoff to the `wp-config.php` in the Chassis root.
+if ( false ) {
+	require ABSPATH . './wp-settings.php';
+}
+
+include( '/vagrant/wp-config.php' );
