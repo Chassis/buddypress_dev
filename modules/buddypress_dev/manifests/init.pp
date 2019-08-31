@@ -10,6 +10,10 @@ class buddypress_dev (
 		require => Class['buddypress_dev::repository'],
 	}
 
+	class { 'buddypress_dev::rest_api':
+		config => $config,
+	}
+
 	class { 'buddypress_dev::tests':
 		database          => "${ config[database][name] }_tests",
 		database_user     => $config[database][user],
