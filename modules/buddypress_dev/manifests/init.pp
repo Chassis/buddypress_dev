@@ -18,8 +18,4 @@ class buddypress_dev (
 		database_prefix   => 'bptests_',
 		require           => Class['buddypress_dev::repository'],
 	}
-
-	class { 'buddypress_dev::build':
-		require => Class['buddypress_dev::config'],
-	}
 }
