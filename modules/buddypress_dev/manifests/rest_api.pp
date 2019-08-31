@@ -9,4 +9,15 @@ class buddypress_dev::rest_api (
 		source   => 'https://github.com/buddypress/BP-REST.git',
 		user     => 'vagrant',
 	}
+	wp::plugin { 'buddypress':
+		ensure   => 'activate',
+		location => '/vagrant/wp',
+		require  => [ Class['Wp'], Class['buddypress_dev::repository'] ],
+	}
+
+	wp::plugin { 'bp-rest':
+		ensure   => 'activate',
+		location => '/vagrant/wp',
+		require  => [ Class['Wp'] ],
+	}
 }
