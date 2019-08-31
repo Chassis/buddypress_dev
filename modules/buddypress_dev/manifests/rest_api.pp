@@ -20,4 +20,10 @@ class buddypress_dev::rest_api (
 		location => '/vagrant/wp',
 		require  => [ Class['Wp'] ],
 	}
+
+	wp::rewrite { '/%post_id%/%postname%/':
+		structure => '/%post_id%/%postname%/',
+		location  => '/vagrant/wp',
+		require   => [ Class['Wp'] ],
+	}
 }
